@@ -22,7 +22,8 @@ monthly_challenges_dictionary = {
 def monthly_challenge(request,month):
     try:
         challenge_text = monthly_challenges_dictionary[month]
-        return HttpResponse(challenge_text)
+        response_data = "<h1>{}</h1>".format(challenge_text)
+        return HttpResponse(response_data)
     except:
         return HttpResponseNotFound("This month is not supported, pal!")
 
@@ -30,7 +31,7 @@ def monthly_challenge_int(request, month):
     months =list(monthly_challenges_dictionary.keys())
     
     if month > len(months):
-        return HttpResponseNotFound("you added a non-existing month...")
+        return HttpResponseNotFound("<h1>you added a non-existing month...</h1>")
     
     redirected_month = months[month - 1]
     redirect_url = reverse("new_challenge_path",args = [redirected_month])
