@@ -18,6 +18,18 @@ monthly_challenges_dictionary = {
 }
 
 
+def index(request: any) -> HttpResponse:
+    list_items = ""
+    months = list(monthly_challenges_dictionary.keys())
+
+    for month in months:
+        capitalize_month = month.capitalize()
+        link_info = reverse("new_challenge_path",args=[month])
+        list_items += f"<li><a href=\"{link_info}\">{capitalize_month}</a></li>"
+        
+        response_data = f"<ul>{list_items}</ul>"
+    return HttpResponse(response_data)
+
 # Create your views here.
 def monthly_challenge(request,month):
     try:
