@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseNotFound
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 
 monthly_challenges_dictionary = {
     "january":"Build a CLI tool (e.g., a task tracker) using argparse, pathlib, and OOP best practices.",
@@ -26,4 +26,11 @@ def monthly_challenge(request,month):
         return HttpResponseNotFound("This month is not supported, pal!")
 
 def monthly_challenge_int(request, month):
-    return HttpResponse(month)
+    months =list(monthly_challenges_dictionary.keys())
+    
+    if month > len(months):
+        return HttpResponseNotFound("you added a non-existing month...")
+    
+    redirected_month = months[month - 1]
+
+    return HttpResponseRedirect("/new_challenge/" + redirected_month)
