@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
+from django.template.loader import render_to_string
 
 monthly_challenges_dictionary = {
     "january":"Build a CLI tool (e.g., a task tracker) using argparse, pathlib, and OOP best practices.",
@@ -34,7 +35,8 @@ def index(request: any) -> HttpResponse:
 def monthly_challenge(request,month):
     try:
         challenge_text = monthly_challenges_dictionary[month]
-        response_data = "<h1>{}</h1>".format(challenge_text)
+        # response_data = "<h1>{}</h1>".format(challenge_text) # old version before learning about templates
+        response_data = render_to_string("new_challenge/challenge.html")
         return HttpResponse(response_data)
     except:
         return HttpResponseNotFound("This month is not supported, pal!")
