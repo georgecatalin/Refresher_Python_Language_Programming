@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All months listed</title>
+</head>
+<body>
+ <ul>
+    {% for month in months %}
+  <li><a href="{% url "new_challenge_path" month %}">{{ month | title }}</a></li>
+    {% endfor %}
+ </ul>
+</body>
+</html>
+
+
+{% comment %} 
+Think of it like a shortcut or a nickname.
+
+{% url ... %}: This tells Django, "I need you to build a URL for me."
+
+"new_challenge_path": This is the nickname (or name) you gave to one of your URL patterns in your urls.py file.
+
+month: This is a variable. In your code, it's the current month from your {% for ... %} loop 
+(e.g., "january", "february", etc.). You're passing this variable into the URL pattern. 
+
+{% endcomment %}

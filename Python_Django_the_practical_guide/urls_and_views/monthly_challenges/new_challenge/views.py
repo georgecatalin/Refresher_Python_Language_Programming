@@ -29,7 +29,8 @@ def index(request: any) -> HttpResponse:
         list_items += f"<li><a href=\"{link_info}\">{capitalize_month}</a></li>"
         
         response_data = f"<ul>{list_items}</ul>"
-    return HttpResponse(response_data)
+    # return HttpResponse(response_data)
+    return render(request, "new_challenge/index.html", { "months" : months})
 
 # Create your views here.
 def monthly_challenge(request,month):
