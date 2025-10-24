@@ -57,6 +57,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             # BASE_DIR/"new_challenge/templates" # generally use this only when working with templates outside the dir of the app
+            BASE_DIR / "templates"
         ],
         'APP_DIRS': True,
         'OPTIONS': {

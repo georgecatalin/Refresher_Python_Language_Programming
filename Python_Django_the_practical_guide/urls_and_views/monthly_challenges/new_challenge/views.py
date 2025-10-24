@@ -15,7 +15,7 @@ monthly_challenges_dictionary = {
     "september": "Connect a React (or Svelte) frontend to your FastAPI backend using REST/GraphQL.",
     "october": "Add full coverage testing, use pytest-cov, tox, and mypy for type checking.",
     "november": "Define your infra using Terraform (provision EC2, RDS, S3, etc.), and automate with Ansible.",
-    "december": "Create a model deployment pipeline (MLflow + Docker + CI/CD). Deploy a live endpoint."
+    "december": None
 }
 
 
