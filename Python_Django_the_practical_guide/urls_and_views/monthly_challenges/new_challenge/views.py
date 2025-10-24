@@ -36,8 +36,9 @@ def monthly_challenge(request,month):
     try:
         challenge_text = monthly_challenges_dictionary[month]
         # response_data = "<h1>{}</h1>".format(challenge_text) # old version before learning about templates
-        response_data = render_to_string("new_challenge/challenge.html")
-        return HttpResponse(response_data)
+        # response_data = render_to_string("new_challenge/challenge.html")
+        # return HttpResponse(response_data) 
+        return render(request, "new_challenge/challenge.html") #implified and shortened the two lines above
     except:
         return HttpResponseNotFound("This month is not supported, pal!")
 
