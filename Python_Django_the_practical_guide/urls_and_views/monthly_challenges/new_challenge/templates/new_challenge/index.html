@@ -5,6 +5,7 @@
 {% endblock page_title %}
 
 {% block content %}
+{% include "new_challenge/includes/header.html" %}
  <ul>
     {% for month in months %}
   <li><a href="{% url "new_challenge_path" month %}">{{ month | title }}</a></li>
