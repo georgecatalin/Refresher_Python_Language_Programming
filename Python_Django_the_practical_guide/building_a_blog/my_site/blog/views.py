@@ -6,7 +6,7 @@ def start_page(request):
 
 
 def list_posts(request):
-    pass
+    return render(request, "blog/all-posts.html")
 
 
 def detail_post(request):

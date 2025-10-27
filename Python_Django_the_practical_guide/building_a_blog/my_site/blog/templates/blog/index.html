@@ -1,52 +1,30 @@
- {% extends "base.html" %}
- {% load static %}
+{% extends 'base.html' %}
+{% load static %}
 
- {% block page_title %}
-    My Blog
-{% endblock %}
-
-{% block css_stylesheet %}             
-<link rel="stylesheet" href="{% static "blog/index.css" %}"  />
-{% endblock %}
-
-{% block  content %}
-<header id="main-navigation">
- <h1><a href = "">George's Blog</a></h1>
- <nav>
-    <a href=" ">All posts</a>
- </nav>
-</header>
-
-<section id = "welcome">
+{% block page_title %}
+  My Blog
+{% endblock %} {% block css_stylesheet %}
+  <link rel="stylesheet" href=" {% static "blog/post.css" %}" />"
+  <link rel="stylesheet" href="{% static 'blog/index.css' %}" />
+{% endblock %} {% block content %}
+  <section id="welcome">
     <header>
-        <img src="{% static "blog/images/george.jpg" %}" alt = "George, the author of this blog" />
-        <h2>George's blog</h2>
+      <img src="{% static 'blog/images/george.jpg' %}" alt="George, the author
+    of this blog" />
+      <h2>George's blog</h2>
     </header>
-            <p> Hi, I am George and this is my blog</p>
-</section>
+    <p>Hi, I am George and this is my blog</p>
+  </section>
 
-<section id = "latest-posts">
+  <section id="latest-posts">
     <h2>My latest thoughts</h2>
     <ul>
-        <li>
-            <article class = "post">
-                <a href="">
-                    <img src=" {% static "blog/images/cranes.jpg" %}" alt = "Mountain hiking"/>
-                
-                    <div class="post__content">
-                        <h3>Mountain hiking</h3>
-                        <p>
-                        Python is the most popular programming language of the world - it is versatile, easy to learn and very powerful!
-                        </p>
-                    </div>
-                </a>
-            </article>
-        </li>
-</section>
+      {% include 'blog/includes/post.html' %}
+    </ul>
+  </section>
 
-<section id = "about">
+  <section id="about">
     <h2>What i do</h2>
     <p>Learn how to build web applications and websites with Python and the Django framework</p>
-</section>
-
-{% endblock  %}
+  </section>
+{% endblock %}
