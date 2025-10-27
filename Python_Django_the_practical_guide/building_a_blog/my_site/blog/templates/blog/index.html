@@ -4,8 +4,7 @@
 {% block page_title %}
   My Blog
 {% endblock %} {% block css_stylesheet %}
-  <link rel="stylesheet" href=" {% static "blog/post.css" %}" />"
-  <link rel="stylesheet" href="{% static 'blog/index.css' %}" />
+  <link rel="stylesheet" href=" {% static 'blog/post.css' %}" />"<link rel="stylesheet" href="{% static 'blog/index.css' %}" />
 {% endblock %} {% block content %}
   <section id="welcome">
     <header>
@@ -13,13 +12,15 @@
     of this blog" />
       <h2>George's blog</h2>
     </header>
-    <p>Hi, I am George and this is my blog</p>
+    <p>Hi, this is blog built while learning Django</p>
   </section>
 
   <section id="latest-posts">
-    <h2>My latest thoughts</h2>
+    <h2>Breaking news from today</h2>
     <ul>
-      {% include 'blog/includes/post.html' %}
+      {% for post in posts %}
+        {% include 'blog/includes/post.html' %}
+      {% endfor %}
     </ul>
   </section>
 
