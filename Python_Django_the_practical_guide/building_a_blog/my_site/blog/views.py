@@ -30,7 +30,7 @@ all_posts = [
   },
   {
     "slug": "russia-tests-burevestnik-nuclear-missile",
-    "image": "cranes.jpg",
+    "image": "missile.jpg",
     "author": "Global News Desk",
     "date": date(2025,10,27),
     "title": "Russia Tests 'Invincible' Nuclear-Powered Missile",
@@ -120,8 +120,9 @@ def start_page(request):
 
 
 def list_posts(request):
-    return render(request, "blog/all-posts.html")
+    return render(request, "blog/all-posts.html", {"posts": all_posts})
 
 
 def detail_post(request,slug):
-    return render(request, "blog/post-detail.html")
+    identified_post = next(post for post in all_posts if post['slug'] == slug)
+    return render(request, "blog/post-detail.html", {"post":identified_post})
