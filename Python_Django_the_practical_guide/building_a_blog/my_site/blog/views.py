@@ -9,5 +9,5 @@ def list_posts(request):
     return render(request, "blog/all-posts.html")
 
 
-def detail_post(request):
-    pass
+def detail_post(request,slug):
+    return render(request, "blog/post-detail.html")
