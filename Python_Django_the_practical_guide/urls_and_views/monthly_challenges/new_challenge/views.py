@@ -43,7 +43,8 @@ def monthly_challenge(request,month):
 
         return render(request, "new_challenge/challenge.html",{"text": challenge_text, "month" : month}) #simplified and shortened the two lines above
     except:
-        return HttpResponseNotFound("This month is not supported, pal!")
+        response_data = render_to_string("404.html")
+        return HttpResponseNotFound(response_data)
 
 def monthly_challenge_int(request, month):
     months =list(monthly_challenges_dictionary.keys())
