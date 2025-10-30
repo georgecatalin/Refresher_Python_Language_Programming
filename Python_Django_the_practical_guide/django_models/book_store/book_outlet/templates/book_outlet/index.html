@@ -11,4 +11,7 @@
        <li><a href=" {{ book.get_absolute_url }}">{{ book.title }}</a> (Rating - {{ book.rating }}) : with a method get_absolute_url() in models</li>
     {% endfor %}
   </ul>
+  <hr>
+  <p>Total number of books : {{total_books}}</p>
+  <p>The average rating of the books is {{average_rating.rating__avg}}</p>
 {% endblock %}
