@@ -7,8 +7,8 @@ def index(request):
    return render(request,"book_outlet/index.html", {"books" : books})
 
 
-def get_detail(request, id):
-   book = get_object_or_404(Book,pk=id)
+def get_detail(request, slug):
+   book = get_object_or_404(Book,slug=slug)
    return render(request, "book_outlet/book_detail.html" , {
       "title": book.title,
       "rating":book.rating,
