@@ -5,6 +5,17 @@ from django.utils.text import slugify
 
 # Create your models here.
 
+
+class Country(models.Model):
+    name = models.CharField(max_length=20)
+    code = models.CharField(max_length=4)
+
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        verbose_name_plural = "Country Entries"
+
 class Address(models.Model):
     street = models.CharField(max_length=100)
     postal_code = models.CharField(max_length=9)
@@ -15,8 +26,6 @@ class Address(models.Model):
     
     class Meta:
         verbose_name_plural = "Address Entries"
-
-
 
 class Author(models.Model):
     first_name = models.CharField(max_length=100)
@@ -35,6 +44,7 @@ class Book(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True, related_name="books")
     is_best_seller = models.BooleanField(default= False )
     slug = models.SlugField(default="",null=False, blank=True, db_index=True)
+    published_countries = models.ManyToManyField(Country,null=False,related_name="countries")
 
     def get_absolute_url(self):
         return reverse("detail-book", args=[self.slug])
@@ -48,3 +58,4 @@ class Book(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super().save(*args, **kwargs)
+
