@@ -9,22 +9,21 @@ from .models import Review
 def display(request):
     if request.method == 'POST':
       
-      this_form = ReviewForm(request.POST)
+      existing_data = Review.objects.get(pk=1) # for updating a certain record
+      this_form = ReviewForm(request.POST, instance=existing_data)
 
       if this_form.is_valid():
          print(this_form.cleaned_data)
  
- 
-         this_data = Review(
-            user_name=this_form.cleaned_data['user_name'],
-            text_review =this_form.cleaned_data['text_review'],
-            rating = this_form.cleaned_data['rating']
-            )
+         # this_data = Review(
+         #    user_name=this_form.cleaned_data['user_name'],
+         #    text_review =this_form.cleaned_data['text_review'],
+         #    rating = this_form.cleaned_data['rating']
+         #    )
          
-         this_data.save()
+         # this_data.save()
 
-
-
+         this_form.save() # for ModelForms , models are already existing
 
          return HttpResponseRedirect(reverse('thank-you-page')) 
       
