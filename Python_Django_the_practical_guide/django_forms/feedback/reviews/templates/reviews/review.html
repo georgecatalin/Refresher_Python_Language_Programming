@@ -15,10 +15,38 @@
     </p>
     <form method="POST">
         {% csrf_token %}
+
+        {% for field in form  %}
+             <div class="form control {% if field.errors %}errors{% endif %}">
+              {{ field.label_tag }}
+              {{ field }}
+              {{ field.errors }}
+        </div>
+        
+        {% endfor %}
+
+
+
+        <hr>
+
+
+
         <div class="form control {% if form.user_name.errors %}errors{% endif %}">
               {{ form.user_name.label_tag }}
               {{ form.user_name }}
               {{ form.user_name.errors }}
+        </div>
+
+         <div class="form control {% if form.text_review.errors %}errors{% endif %}">
+              {{ form.text_review.label_tag }}
+              {{ form.text_review }}
+              {{ form.text_review.errors }}
+        </div>
+
+         <div class="form control {% if form.rating.errors %}errors{% endif %}">
+              {{ form.rating.label_tag }}
+              {{ form.rating }}
+              {{ form.rating.errors }}
         </div>
      
      <button>Submit data</button>
