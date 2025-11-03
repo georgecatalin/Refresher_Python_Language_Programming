@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your review</title>
+</head>
+<body>
+    <p>
+        {% if has_error %}
+        Please enter a valid username, bro...
+        {% endif %}
+    </p>
+    <form method="POST">
+        {% csrf_token %}
+     <label for="username">Your username</label>
+     <input type="text" name="this_user" id="username">
+     <button>Submit data</button>
+    </form>
+</body>
+</html>
