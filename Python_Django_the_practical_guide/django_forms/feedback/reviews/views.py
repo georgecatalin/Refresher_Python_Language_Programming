@@ -3,17 +3,33 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .form import ReviewForm
 from .models import Review
+from django.views import View
+
+class ReviewView(View):
+   def get(self,request):
+       this_form = ReviewForm()
+       return render(request,"reviews/review.html", {"form":this_form})
+
+
+   def post(self,request):
+       this_form = ReviewForm(request.POST)
+
+       if this_form.is_valid():
+          this_form.save()
+
+       return HttpResponseRedirect(reverse('thank-you-page'))
+
 
 
 # Create your views here.
-def display(request):
-    if request.method == 'POST':
+# def display(request):
+#     if request.method == 'POST':
       
-      existing_data = Review.objects.get(pk=1) # for updating a certain record
-      this_form = ReviewForm(request.POST, instance=existing_data)
+#       existing_data = Review.objects.get(pk=1) # for updating a certain record
+#       this_form = ReviewForm(request.POST, instance=existing_data)
 
-      if this_form.is_valid():
-         print(this_form.cleaned_data)
+#       if this_form.is_valid():
+#          print(this_form.cleaned_data)
  
          # this_data = Review(
          #    user_name=this_form.cleaned_data['user_name'],
@@ -23,14 +39,14 @@ def display(request):
          
          # this_data.save()
 
-         this_form.save() # for ModelForms , models are already existing
+         # this_form.save() # for ModelForms , models are already existing
 
-         return HttpResponseRedirect(reverse('thank-you-page')) 
+   #       return HttpResponseRedirect(reverse('thank-you-page')) 
       
-    else:
-       this_form = ReviewForm()
+   #  else:
+   #     this_form = ReviewForm()
     
-    return render(request,"reviews/review.html", {"form":this_form})
+   #  return render(request,"reviews/review.html", {"form":this_form})
 
 
 def display_thank(request):
