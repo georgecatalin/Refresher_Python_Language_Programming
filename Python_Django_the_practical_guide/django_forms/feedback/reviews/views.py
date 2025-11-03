@@ -12,9 +12,11 @@ def display(request):
 
       if this_form.is_valid():
          print(this_form.cleaned_data)
-         return HttpResponseRedirect(reverse('thank-you-page'))
+         return HttpResponseRedirect(reverse('thank-you-page')) 
       
-    this_form = ReviewForm()
+    else:
+       this_form = ReviewForm()
+    
     return render(request,"reviews/review.html", {"form":this_form})
 
 
