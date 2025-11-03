@@ -30,7 +30,7 @@
         <hr>
 
 
-
+{% comment %} 
         <div class="form control {% if form.user_name.errors %}errors{% endif %}">
               {{ form.user_name.label_tag }}
               {{ form.user_name }}
@@ -46,8 +46,8 @@
          <div class="form control {% if form.rating.errors %}errors{% endif %}">
               {{ form.rating.label_tag }}
               {{ form.rating }}
-              {{ form.rating.errors }}
-        </div>
+              {{ form.rating.errors }}s
+        </div> {% endcomment %}
      
      <button>Submit data</button>
     </form>
