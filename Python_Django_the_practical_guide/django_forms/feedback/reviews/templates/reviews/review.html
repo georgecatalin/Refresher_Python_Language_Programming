@@ -13,8 +13,7 @@
     </p>
     <form method="POST">
         {% csrf_token %}
-     <label for="username">Your username</label>
-     <input type="text" name="this_user" id="username">
+        {{ form }}
      <button>Submit data</button>
     </form>
 </body>
