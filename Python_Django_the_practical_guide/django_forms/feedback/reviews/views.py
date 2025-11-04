@@ -7,10 +7,7 @@ from django.views import View
 from django.views.generic.base import TemplateView
 from .models import Review
 from django.views.generic import ListView, DetailView
-from django.views.generic.edit import FormView
-
-
-
+from django.views.generic.edit import FormView,CreateView
 
 # class ReviewView(View):
 #    def get(self,request):
@@ -26,15 +23,20 @@ from django.views.generic.edit import FormView
 
 #        return HttpResponseRedirect(reverse('thank-you-page'))
 
-class ReviewView(FormView):
-    template_name = "reviews/review.html"
-    form_class = ReviewForm
-    success_url = "/thank-you"
+# class ReviewView(FormView):
+#     template_name = "reviews/review.html"
+#     form_class = ReviewForm
+#     success_url = "/thank-you"
 
-    def form_valid(self, form):
-        form.save()
-        return super().form_valid(form)
-    
+#     def form_valid(self, form):
+#         form.save()
+#         return super().form_valid(form)
+
+class ReviewView(CreateView):
+    model = Review
+    form_class = ReviewForm
+    template_name = "reviews/review.html"
+    success_url = "/thank-you"
 
 # Create your views here.
 # def display(request):
