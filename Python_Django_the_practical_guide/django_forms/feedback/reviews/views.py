@@ -6,6 +6,7 @@ from .models import Review
 from django.views import View
 from django.views.generic.base import TemplateView
 from .models import Review
+from django.views.generic import ListView
 
 class ReviewView(View):
    def get(self,request):
@@ -69,15 +70,27 @@ class ThankYouView(TemplateView):
         context["message"] = "Hello from template view."
         return context
     
-class ReviewListView(TemplateView):
-    template_name = "reviews/review_list.html"
+# class ReviewListView(TemplateView):
+#     template_name = "reviews/review_list.html"
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        review_list = Review.objects.all()
-        context["review_list"] = review_list
-        return context
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         review_list = Review.objects.all()
+#         context["review_list"] = review_list
+#         return context
+
+class ReviewListView(ListView):
+    template_name = "reviews/review_list.html"
+    model = Review
+    context_object_name = "review_list"
+
+    def get_queryset(self):
+        base_query = super().get_queryset()
+        filtered_query = base_query.filter(rating__gt = 4)
+        return filtered_query
     
+    
+
 class SingleReviewView(TemplateView):
     template_name = "reviews/single_review.html"
 
