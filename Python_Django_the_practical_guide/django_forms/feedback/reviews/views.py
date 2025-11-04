@@ -4,6 +4,7 @@ from django.urls import reverse
 from .form import ReviewForm
 from .models import Review
 from django.views import View
+from django.views.generic.base import TemplateView
 
 class ReviewView(View):
    def get(self,request):
@@ -49,10 +50,15 @@ class ReviewView(View):
    #  return render(request,"reviews/review.html", {"form":this_form})
 
 # replace the function with a standard class view
-class ThankYouView(View):
-    def get(self, request):
-        return render(request, 'reviews/thank_you.html')
+# class ThankYouView(View):
+#     def get(self, request):
+#         return render(request, 'reviews/thank_you.html')
 
 
 # def display_thank(request):
 #     return render(request, 'reviews/thank_you.html')
+
+
+# replace the standard class view with a template view
+class ThankYouView(TemplateView):
+    template_name = "reviews/thank_you.html"
