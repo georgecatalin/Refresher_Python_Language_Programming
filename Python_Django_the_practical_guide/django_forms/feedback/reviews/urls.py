@@ -3,5 +3,5 @@ from . import views
 
 urlpatterns = [
     path("", views.ReviewView.as_view()),
-    path("thank-you",views.display_thank, name="thank-you-page")
+    path("thank-you",views.ThankYouView.as_view(), name="thank-you-page")
 ]

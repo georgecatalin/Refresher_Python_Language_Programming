@@ -1,55 +1,19 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your review</title>
-    <link rel="stylesheet" href="{% static 'reviews/style.css' %}">
-</head>
-<body>
-    <p>
-        {% if has_error %}
-        Please enter a valid username, bro...
-        {% endif %}
-    </p>
-    <form method="POST">
-        {% csrf_token %}
+{% extends 'reviews/base.html' %}
 
-        {% for field in form  %}
-             <div class="form control {% if field.errors %}errors{% endif %}">
-              {{ field.label_tag }}
-              {{ field }}
-              {{ field.errors }}
-        </div>
-        
-        {% endfor %}
+{% block title %}
+  Your review
+{% endblock %}
 
+{% block content %}
+  <form method="POST">
+    {% csrf_token %}
 
+    {% for field in form %}
+      <div class="form control {% if field.errors %}errors{% endif %}">{{ field.label_tag }}
+        {{ field }}
+        {{ field.errors }}</div>
+    {% endfor %}
 
-        <hr>
-
-
-{% comment %} 
-        <div class="form control {% if form.user_name.errors %}errors{% endif %}">
-              {{ form.user_name.label_tag }}
-              {{ form.user_name }}
-              {{ form.user_name.errors }}
-        </div>
-
-         <div class="form control {% if form.text_review.errors %}errors{% endif %}">
-              {{ form.text_review.label_tag }}
-              {{ form.text_review }}
-              {{ form.text_review.errors }}
-        </div>
-
-         <div class="form control {% if form.rating.errors %}errors{% endif %}">
-              {{ form.rating.label_tag }}
-              {{ form.rating }}
-              {{ form.rating.errors }}s
-        </div> {% endcomment %}
-     
-     <button>Submit data</button>
-    </form>
-</body>
-</html>
+    <button>Submit data</button>
+  </form>
+{% endblock %}

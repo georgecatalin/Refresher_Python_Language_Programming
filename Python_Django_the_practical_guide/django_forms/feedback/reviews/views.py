@@ -48,6 +48,11 @@ class ReviewView(View):
     
    #  return render(request,"reviews/review.html", {"form":this_form})
 
+# replace the function with a standard class view
+class ThankYouView(View):
+    def get(self, request):
+        return render(request, 'reviews/thank_you.html')
 
-def display_thank(request):
-    return render(request, 'reviews/thank_you.html')
+
+# def display_thank(request):
+#     return render(request, 'reviews/thank_you.html')
