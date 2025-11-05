@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from .forms import ProfilesForm
 from .models import UserModel
 from django.views.generic.edit import CreateView
+from django.views.generic import ListView
 
 # Create your views here.
 
@@ -41,3 +42,10 @@ class CreateProfileView(View):
             return HttpResponseRedirect("/profiles")
         
         return render(request,"profiles/create_profile.html", {"form": submitted_form}) """
+
+
+# create a List View to display the list of profiles
+class UserProfilesView(ListView):
+    template_name = "profiles/user_profiles.html"
+    context_object_name = "profiles_list"
+    model = UserModel
