@@ -3,6 +3,7 @@ from django.views import View
 from django.http import HttpResponseRedirect
 from .forms import ProfilesForm
 from .models import UserModel
+from django.views.generic.edit import CreateView
 
 # Create your views here.
 
@@ -12,6 +13,16 @@ from .models import UserModel
 #         for chunk in file.chunks():
 #             dest.write(chunk)
 
+# Implement using CreateView class
+class CreateProfileView(CreateView):
+    template_name = "profiles/create_profile.html"
+    model = UserModel
+    fields = "__all__"
+    success_url = "/profiles"
+
+
+
+""" 
 class CreateProfileView(View):
     def get(self, request):
         form = ProfilesForm()
@@ -29,4 +40,4 @@ class CreateProfileView(View):
             my_model.save()
             return HttpResponseRedirect("/profiles")
         
-        return render(request,"profiles/create_profile.html", {"form": submitted_form})
+        return render(request,"profiles/create_profile.html", {"form": submitted_form}) """
